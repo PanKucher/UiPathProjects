@@ -1,0 +1,87 @@
+{
+  "name": "KYC WUDB Comment and Management Tool",
+  "projectId": "f6ab896c-1300-4ca5-b064-6a8f7a9e071b",
+  "description": "Build a process that supports real-time communication with Apps",
+  "main": "Main.xaml",
+  "dependencies": {
+    "iWatch.Library.Runtime": "[1.0.17]",
+    "Snowflake_General.Utilities": "[1.0.5]",
+    "UiPath.System.Activities": "[23.4.3]",
+    "UiPath.UIAutomation.Activities": "[23.10.6]",
+    "UiPath.WorkflowEvents.Activities": "[2.0.0]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "23.4.5.0",
+  "projectVersion": "1.0.43",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": false,
+    "isAttended": true,
+    "requiresUserInteraction": false,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": true,
+    "startsInPiP": true,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": true,
+    "saveToCloud": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "1bcc646a-e39f-4852-9499-a4cf95100aae",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "invokedWorkflows\\CopyComment.xaml",
+      "uniqueId": "3217ca49-e5d0-4d26-bad3-6feb5c8cf0b2",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "invokedWorkflows\\IwatchNavigate.xaml",
+      "uniqueId": "6a175b58-0685-4f0a-9e19-18c6ee449a24",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "invokedWorkflows\\SnowflakeRunQuery_InterdictionAndECDD.xaml",
+      "uniqueId": "417f9c85-08b5-4909-b653-c84fe4d57510",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "invokedWorkflows\\GetCaseComments.xaml",
+      "uniqueId": "bfa79bab-b87b-43eb-ba14-efc466a706d6",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}

@@ -1,0 +1,349 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="IwatchNavigate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ic="clr-namespace:iWatch.Case_Search;assembly=iWatch" xmlns:ig="clr-namespace:iWatch.General_Utilities;assembly=iWatch" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Diagnostics;assembly=System.Diagnostics.Process" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_CaseId" Type="InArgument(x:String)" />
+    <x:Property Name="in_UserName" Type="InArgument(x:String)" />
+    <x:Property Name="out_RecordsNotFound" Type="OutArgument(x:String)" />
+    <x:Property Name="in_ApplicationPath" Type="InArgument(x:String)" />
+    <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>980,3228.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>IwatchNavigate_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>iWatch</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Activities.System</x:String>
+      <x:String>iWatch.General_Utilities</x:String>
+      <x:String>iWatch.Case_Search</x:String>
+      <x:String>UiPath.UIAutomationNext.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>iWatch</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.WorkflowEvents.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.Process</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.PowerShell.Commands.Diagnostics</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.FileVersionInfo</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.DiagnosticSource</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.EventLog</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.PerformanceCounter</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.TextWriterTraceListener</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.TraceSource</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="IwatchNavigate" sap:VirtualizedContainerService.HintSize="572.8,3164" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="UserName" />
+      <Variable x:TypeArguments="x:Boolean" Name="Exist" />
+      <Variable x:TypeArguments="sco:Collection(sd:Process)" Name="Processes" />
+      <Variable x:TypeArguments="x:Boolean" Name="iWatchLaunched" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;KYC WUDB Onboarding iWatch started&quot;]" />
+    <Assign sap:VirtualizedContainerService.HintSize="510.4,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[UserName]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Environment.UserName]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510.4,324.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,246.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:FileExistsX DisplayName="File Exists" Exists="[Exist]" sap:VirtualizedContainerService.HintSize="387.2,134.4" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[&quot;C:\Users\&quot;+UserName+&quot;\Desktop\iWatch.appref-ms&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:FileExistsX>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510.4,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,295.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[Exist=True]" sap:VirtualizedContainerService.HintSize="387.2,52.8" sap2010:WorkflowViewState.IdRef="If_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[in_ApplicationPath]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["C:\Users\"+UserName+"\Desktop\iWatch.appref-ms"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[in_ApplicationPath]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["C:\Users\"+UserName+"\OneDrive - Western Union\Desktop\iWatch.appref-ms"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510.4,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="584,737.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="521.6,625.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="iWatch - Main Window" sap:VirtualizedContainerService.HintSize="483.2,396" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="Never" ScopeGuid="e6bafb96-7675-48cc-9a72-e13848673ef3" Version="V2">
+                <uix:NApplicationCard.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,105" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </ActivityAction>
+                </uix:NApplicationCard.Body>
+                <uix:NApplicationCard.TargetApp>
+                  <uix:TargetApp Area="0, 0, 1920, 1040" ContentHash="9XDMtxJ6w06gtdIxt-gwbA" FilePath="[in_ApplicationPath]" IconBase64="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" InformativeScreenshot="d5484ecb20d2026041a7f0c4f7f1b8ae.png" Reference="5IdxJTzG3kOP9hwADG5fig/9XAOy8Y8jU-OYg9HKtJHag" Selector="&lt;wnd app='iwatch.exe' cls='HwndWrapper*' title='iWatch' /&gt;" Title="iWatch" />
+                </uix:NApplicationCard.TargetApp>
+              </uix:NApplicationCard>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="488,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <ui:LogMessage DisplayName="Log  - iWatch was not open" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;iWatch was not open&quot;]" />
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="510.4,134.4" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Start" TargetType="sd:Process">
+      <InArgument x:TypeArguments="x:String">
+        <Literal x:TypeArguments="x:String">explorer.exe</Literal>
+      </InArgument>
+      <InArgument x:TypeArguments="x:String">
+        <Literal x:TypeArguments="x:String">C:\Users\308522\OneDrive - Western Union\Desktop\iWatch.appref-ms</Literal>
+      </InArgument>
+    </InvokeMethod>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510.4,384.8" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,306.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ig:iWatch_LaunchAndLogin BreakTriggerScopeInArgument="{x:Null}" sap:VirtualizedContainerService.HintSize="387.2,194.4" sap2010:WorkflowViewState.IdRef="iWatch_LaunchAndLogin_1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" />
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ic:iWatch_ClickSearch sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="iWatch_ClickSearch_1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" />
+    <ic:iWatch_ClickCaseSearch sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="iWatch_ClickCaseSearch_1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" />
+    <ic:iWatch_ClickCase sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="iWatch_ClickCase_1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" />
+    <ic:iWatch_WriteCaseId sap:VirtualizedContainerService.HintSize="510,192" sap2010:WorkflowViewState.IdRef="iWatch_WriteCaseId_1" in_ApplicationPath="[in_ApplicationPath]" in_CaseId="[in_CaseId]" in_UserName="[UserName]" />
+    <ic:iWatch_ClickPlusBlue sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="iWatch_ClickPlusBlue_1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" />
+    <ic:iWatch_ClickSearchForCase sap:VirtualizedContainerService.HintSize="510,192" sap2010:WorkflowViewState.IdRef="iWatch_ClickSearchForCase_1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" out_RecordsNotFound="[out_RecordsNotFound]" />
+    <If Condition="[out_RecordsNotFound = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="510,411" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,229" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ic:iWatch_OpenCase_View_ DisplayName="iWatch_OpenCase(View)" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="iWatch_OpenCase_View__1" in_ApplicationPath="[in_ApplicationPath]" in_UserName="[UserName]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,229" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[out_RecordsNotFound]" />
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

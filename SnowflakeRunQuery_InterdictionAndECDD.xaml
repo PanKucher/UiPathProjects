@@ -1,0 +1,592 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="example1" this:example1.in_GID="4000000000239110558" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:Snowflake_General_Utilities;assembly=Snowflake_General Utilities" xmlns:s1="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Comment" Type="InArgument(x:String)" />
+    <x:Property Name="out_Comment" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+    <x:Property Name="out_TableInterdiction" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_GID" Type="InArgument(x:String)" />
+    <x:Property Name="out_InterdictionSourceReason" Type="OutArgument(x:String)" />
+    <x:Property Name="out_TableEcdd" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_CaseIds" Type="OutArgument(x:String)" />
+    <x:Property Name="out_CommentInfo" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_TableEcddFiltered" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_NoResultsEcdd" Type="OutArgument(x:String)" />
+    <x:Property Name="out_NoResultsInterdiction" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1337,6539</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>example1_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>Snowflake_General_Utilities</x:String>
+      <x:String>System.Net.NetworkInformation</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>Snowflake.Data.Client</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>Snowflake_General Utilities</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.NetworkInformation</AssemblyReference>
+      <AssemblyReference>System.Net.Ping</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>Snowflake.Data</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="SnowflakeRunQuery_InterdictionAndECDD" sap:VirtualizedContainerService.HintSize="906,6474" sap2010:WorkflowViewState.IdRef="Sequence_14">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="AccountType" />
+      <Variable x:TypeArguments="x:String" Name="Database" />
+      <Variable x:TypeArguments="x:String" Name="Role" />
+      <Variable x:TypeArguments="x:String" Name="Schema" />
+      <Variable x:TypeArguments="x:String" Name="Server" />
+      <Variable x:TypeArguments="x:String" Name="Warehouse" />
+      <Variable x:TypeArguments="x:String" Name="Username" />
+      <Variable x:TypeArguments="x:String" Name="ConnectionMessage" />
+      <Variable x:TypeArguments="x:Boolean" Name="ConnectionToSnowflake" />
+      <Variable x:TypeArguments="sd:IDbConnection" Name="SnowflakeConnector" />
+      <Variable x:TypeArguments="sd:DataTable" Name="TableInterdictionStatusActive" />
+      <Variable x:TypeArguments="x:String" Name="CaseID" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="844,141" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;KYC WUDB Onboarding snowflake query started&quot;]" />
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="844,6182" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="RunQueries" sap:VirtualizedContainerService.HintSize="806,5428" sap2010:WorkflowViewState.IdRef="Sequence_25">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="ss:SecureString" Name="Password" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Snowflake CAP - Account Type" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[AccountType]</OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Snowflake CAP - Database" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="GetRobotAsset_7">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[Database]</OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="Snowflake CAP -  Username &amp; Password" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[Password]" Username="[Username]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotCredential>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Snowflake CAP - Role" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="GetRobotAsset_8">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[Role]</OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Snowflake CAP - Schema" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="GetRobotAsset_9">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[Schema]</OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Snowflake CAP - Server" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="GetRobotAsset_10">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[Server]</OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Snowflake CAP - Warehouse" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Attended Automations" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="GetRobotAsset_11">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[Warehouse]</OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <s:Snowflake_Authenticate_And_RunQuery ConnectedToSnowflake="[ConnectionToSnowflake]" ConnectionMessage="[ConnectionMessage]" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="Snowflake_Authenticate_And_RunQuery_1" SnowflakeAccountType="[AccountType]" SnowflakeDatabase="[Database]" SnowflakePassword="[Password]" SnowflakeQuery="[&quot;With INTRENT As&#xA;(&#xA;  Select&#xA;  C.CASE_ID&#xA;  ,INTE.STATUS As INT_Status&#xA;  ,APPR.STATUS As APPR_Status&#xA;  ,KOR.STATUS As KOR_Status&#xA;  ,INTE.CREATED_TIMESTAMP As INT_CreatedDate&#xA;  ,APPR.CREATED_TIMESTAMP As APPR_CreatedDate&#xA;  ,KOR.CREATED_TIMESTAMP As KOR_CreatedDate&#xA;  ,ISRC.INTR_SOURCE_CODE As ISrcCode&#xA;  ,ASRC.INTR_SOURCE_CODE As ASrcCode&#xA;  ,KSRC.INTR_SOURCE_CODE As KSrcCode&#xA;  ,IPM.INTR_REASON_DESCRIPTION As INTR_Reason&#xA;  ,APM.INTR_REASON_DESCRIPTION As APPR_Reason&#xA;  ,KPM.INTR_REASON_DESCRIPTION As KOR_Reason&#xA;  ,IEM.CREATED_TIMESTAMP&#xA;  ,INTE.INTR_EXPIRY_DATE&#xA;  ,KOR.KOR_END_DATE&#xA;  ,ROW_NUMBER() OVER (PARTITION By IEM.ENTITY_ID Order By INTE.STATUS, APPR.STATUS, KOR.STATUS) As RowNumber&#xA;&#xA;From&#xA;  IWATCH_PROD.CPCE.INTR_ENTITY_MASTER As IEM&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTERDICTION_ENTITY As INTE On INTE.ENTITY_ID = IEM.ENTITY_ID&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_SOURCE As ISRC On INTE.INTR_SOURCE_ID = ISRC.INTR_SOURCE_ID&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_PROGRAM_MASTER As IPM On INTE.INTR_REASON_CODE = IPM.INTR_REASON_CODE&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_APPROVED_ENTITIES As APPR On APPR.ENTITY_ID = IEM.ENTITY_ID&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_SOURCE As ASRC On APPR.INTR_SOURCE_ID = ASRC.INTR_SOURCE_ID&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_PROGRAM_MASTER As APM On APPR.INTR_REASON_CODE = APM.INTR_REASON_CODE&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_KOR_ENTITIES As KOR On KOR.ENTITY_ID = IEM.ENTITY_ID&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_SOURCE As KSRC On KOR.INTR_SOURCE_ID = KSRC.INTR_SOURCE_ID&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.INTR_PROGRAM_MASTER As KPM On KOR.INTR_REASON_CODE = KPM.INTR_REASON_CODE&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.SUBJECT As Sub On (IEM.GALACTIC_ID = Sub.SUBJECT_ID Or IEM.GALACTIC_ID = Sub.SUBJECT_ATTRIBUTE)&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.CASE_SUBJECT_USSAR_EX_VW As CS On Sub.SUBJECT_KEY = CS.SUBJECT_KEY&#xA;  LEFT OUTER Join IWATCH_PROD.CPCE.CASE_USSAR_EX_VW As C On CS.CASE_KEY = C.CASE_KEY&#xA;&#xA;  Where IEM.GALACTIC_ID In ('&quot;+in_GID+&quot;')&#xA;)&#xA;&#xA;Select&#xA;INTRENT.CASE_ID&#xA;&#xA;,Case&#xA;  When INTRENT.INT_Status = 'A' THEN ISrcCode&#xA;  When INTRENT.APPR_Status = 'A' THEN ASrcCode&#xA;  When INTRENT.KOR_Status = 'A' THEN KSrcCode&#xA;  When (INTRENT.INT_CreatedDate &gt; APPR_CreatedDate) And (INTRENT.INT_CreatedDate &gt; INTRENT.KOR_CreatedDate) Then ISrcCode&#xA;  When (INTRENT.APPR_CreatedDate &gt; INT_CreatedDate) And (INTRENT.APPR_CreatedDate &gt; INTRENT.KOR_CreatedDate) Then ASrcCode&#xA;  When (INTRENT.KOR_CreatedDate &gt; INT_CreatedDate) And (INTRENT.KOR_CreatedDate &gt; INTRENT.APPR_CreatedDate) Then KSrcCode&#xA;  When INTRENT.APPR_Status = 'D' THEN ASrcCode&#xA;  When INTRENT.KOR_Status = 'D' THEN KSrcCode&#xA;  Else ISrcCode&#xA;End As &quot;&quot;Interdiction Source&quot;&quot;&#xA;&#xA;,Case&#xA;  When INTRENT.INT_Status = 'A' THEN INTR_Reason&#xA;  When INTRENT.APPR_Status = 'A' THEN APPR_Reason&#xA;  When INTRENT.KOR_Status = 'A' THEN KOR_Reason&#xA;  When (INTRENT.INT_CreatedDate &gt; APPR_CreatedDate) And (INTRENT.INT_CreatedDate &gt; INTRENT.KOR_CreatedDate) Then INTR_Reason&#xA;  When (INTRENT.APPR_CreatedDate &gt; INT_CreatedDate) And (INTRENT.APPR_CreatedDate &gt; INTRENT.KOR_CreatedDate) Then APPR_Reason&#xA;  When (INTRENT.KOR_CreatedDate &gt; INT_CreatedDate) And (INTRENT.KOR_CreatedDate &gt; INTRENT.APPR_CreatedDate) Then KOR_Reason&#xA;  When INTRENT.APPR_Status = 'D' THEN APPR_Reason&#xA;  When INTRENT.KOR_Status = 'D' THEN KOR_Reason&#xA;  Else INTR_Reason&#xA;End As &quot;&quot;Interdiction Reason&quot;&quot;&#xA;&#xA;,Case&#xA;  When INTRENT.INT_Status = 'A' THEN 'Active'&#xA;  When INTRENT.APPR_Status = 'A' THEN 'Active'&#xA;  When INTRENT.KOR_Status = 'A' THEN 'Active'&#xA;  When INTRENT.INT_Status = 'D' OR INTRENT.INT_Status = 'P' THEN 'Deleted'&#xA;  When INTRENT.APPR_Status = 'D' THEN 'Deleted'&#xA;  When INTRENT.KOR_Status = 'D' THEN 'Deleted'&#xA;  Else 'Deleted'&#xA;End As Status&#xA;&#xA;,INTRENT.CREATED_TIMESTAMP As &quot;&quot;Entity Created Date&quot;&quot;&#xA;&#xA;,Case&#xA;  When INTRENT.INT_Status = 'A' THEN INTRENT.INTR_EXPIRY_DATE&#xA;  When INTRENT.APPR_Status = 'A' THEN NULL&#xA;  When INTRENT.KOR_Status = 'A' THEN INTRENT.KOR_END_DATE&#xA;  When (INTRENT.INT_CreatedDate &gt; APPR_CreatedDate) And (INTRENT.INT_CreatedDate &gt; INTRENT.KOR_CreatedDate) Then INTRENT.INTR_EXPIRY_DATE&#xA;  When (INTRENT.APPR_CreatedDate &gt; INT_CreatedDate) And (INTRENT.APPR_CreatedDate &gt; INTRENT.KOR_CreatedDate) Then NULL&#xA;  When (INTRENT.KOR_CreatedDate &gt; INT_CreatedDate) And (INTRENT.KOR_CreatedDate &gt; INTRENT.APPR_CreatedDate) Then INTRENT.KOR_END_DATE&#xA;  When INTRENT.APPR_Status = 'D' THEN NULL&#xA;  When INTRENT.KOR_Status = 'D' THEN INTRENT.KOR_END_DATE&#xA;  Else INTRENT.INTR_EXPIRY_DATE&#xA;End As &quot;&quot;Entity Expiry Date&quot;&quot;&#xA;&#xA;From INTRENT&#xA;&#xA;Where INTRENT.RowNumber = 1&quot;]" SnowflakeRole="[Role]" SnowflakeSchema="[Schema]" SnowflakeServer="[Server]" SnowflakeTable="[out_TableInterdiction]" SnowflakeUsername="[Username]" SnowflakeWarehouse="[Warehouse]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </s:Snowflake_Authenticate_And_RunQuery>
+          <ui:FilterDataTable DataTable="[out_TableInterdiction]" DisplayName="Filter Data Table if Status = Active" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[TableInterdictionStatusActive]" SelectColumnsMode="Remove">
+            <ui:FilterDataTable.Filters>
+              <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                  <ui:FilterOperationArgument.Column>
+                    <InArgument x:TypeArguments="x:String">["Status"]</InArgument>
+                  </ui:FilterOperationArgument.Column>
+                  <ui:FilterOperationArgument.Operand>
+                    <InArgument x:TypeArguments="x:String">["Active"]</InArgument>
+                  </ui:FilterOperationArgument.Operand>
+                </ui:FilterOperationArgument>
+              </scg:List>
+            </ui:FilterDataTable.Filters>
+            <ui:FilterDataTable.SelectColumns>
+              <scg:List x:TypeArguments="InArgument" Capacity="4">
+                <x:Null />
+              </scg:List>
+            </ui:FilterDataTable.SelectColumns>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:FilterDataTable>
+          <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="CREATED DATE" DataTable="[out_TableInterdiction]" DisplayName="Add Data Column - Created Date" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:AddDataColumn>
+          <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="EXPIRY DATE" DataTable="[out_TableInterdiction]" DisplayName="Add Data Column - Expiry Date" sap:VirtualizedContainerService.HintSize="744,52" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:AddDataColumn>
+          <If Condition="[TableInterdictionStatusActive.RowCount &gt; 0 OR out_TableInterdiction.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="744,822" sap2010:WorkflowViewState.IdRef="If_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="572,640" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="dateT" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_TableInterdiction]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="530,430" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,315" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_38">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[CurrentRow("CREATED DATE")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[split(CurrentRow("Entity Created Date").tostring," ")(0)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_39">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[CurrentRow("EXPIRY DATE")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[split(CurrentRow("Entity Expiry Date").tostring," ")(0)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEachRow>
+                <Assign sap:VirtualizedContainerService.HintSize="530,82" sap2010:WorkflowViewState.IdRef="Assign_13">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_InterdictionSourceReason]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[TableInterdictionStatusActive.Rows(0).Item("Interdiction Source").ToString +"; "+ out_TableInterdiction.Rows(0).Item("Interdiction Reason").ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_40">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_NoResultsInterdiction]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">No results were found</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+          <s:Snowflake_Authenticate_And_RunQuery ConnectedToSnowflake="[ConnectionToSnowflake]" ConnectionMessage="[ConnectionMessage]" sap:VirtualizedContainerService.HintSize="744,651" sap2010:WorkflowViewState.IdRef="Snowflake_Authenticate_And_RunQuery_2" SnowflakeAccountType="[AccountType]" SnowflakeDatabase="[Database]" SnowflakePassword="[Password]" SnowflakeQuery="[&quot;With&#xA;SUB_SUBJECT As&#xA;(&#xA;    Select S.SUBJECT_KEY&#xA;    From IWATCH_PROD.CPCE.SUBJECT As S&#xA;    Where S.SUBJECT_ID = '&quot;+in_GID+&quot;' OR S.SUBJECT_ATTRIBUTE = '&quot;+in_GID+&quot;'&#xA;),&#xA;&#xA; &#xA;&#xA;SUB_CASE_COMMENT As&#xA;(&#xA;    Select&#xA;    CC.CASE_KEY&#xA;    ,CC.COMMENT&#xA;    ,CC.CREATE_TIMESTAMP&#xA;    ,CC.CREATE_USER_ID&#xA;    From IWATCH_PROD.CPCE.CASE_COMMENT_USSAR_EX_VW As CC&#xA;    Where CC.STATUS='A'&#xA;),&#xA;&#xA; &#xA;&#xA;SUB_INVESTIGATIVE_GROUP As&#xA;(&#xA;    Select&#xA;        IG.INV_GRP_ID&#xA;        ,IG.INV_GRP_NAME&#xA;    From IWATCH_PROD.CPCE.INVESTIGATIVE_GROUP As IG&#xA;    Where&#xA;        IG.INV_GRP_NAME Like '%KYC%'&#xA;        And&#xA;        (&#xA;            IG.INV_GRP_NAME Like '%ECDD%'&#xA;            Or IG.INV_GRP_NAME Like '%CDD%'&#xA;            Or IG.INV_GRP_NAME Like '%LPMT%'&#xA;        )&#xA;),&#xA;&#xA; &#xA;&#xA;SUB_QUESTION As&#xA;(&#xA;  Select QUESTION_ID&#xA;  From IWATCH_PROD.CPCE.QUESTION&#xA;  Where INTERVIEW_SECTION_ID In&#xA;  (&#xA;    Select INTERVIEW_SECTION_ID&#xA;    From IWATCH_PROD.CPCE.INTERVIEW_SECTION&#xA;    Where INTERVIEW_SECTION_DESCRIPTION = 'Decision Criteria'&#xA;  )&#xA;And QUESTION_DESCRIPTION ='Decision Notes:'&#xA;)&#xA;&#xA; &#xA;&#xA;Select&#xA;C.CASE_ID&#xA;,BG.BUSINESS_GROUP_NAME&#xA;,IG.INV_GRP_NAME&#xA;,ST.STATUS_DESCRIPTION&#xA;,SS.SUB_STATUS_DESCRIPTION&#xA;,C.CREATE_TIMESTAMP&#xA;,CIA.CASE_INTERVIEW_ANSWER_DESC As &quot;&quot;COMMENT&quot;&quot;&#xA;,CIA.CREATE_TIMESTAMP As &quot;&quot;COMMENT CREATION&quot;&quot;&#xA;,U.FIRST_NAME || ' ' || U.LAST_NAME AS &quot;&quot;COMMENT BY USER&quot;&quot;&#xA;&#xA; &#xA;&#xA;From&#xA;SUB_SUBJECT As S&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.CASE_SUBJECT_USSAR_EX_VW As CS&#xA;On CS.SUBJECT_KEY = S.SUBJECT_KEY&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.CASE_USSAR_EX_VW As C&#xA;On C.CASE_KEY = CS.CASE_KEY&#xA;&#xA; &#xA;&#xA;INNER Join SUB_INVESTIGATIVE_GROUP As IG&#xA;On C.INV_GRP_ID = IG.INV_GRP_ID&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.BUSINESS_GROUP As BG&#xA;On C.BUSINESS_GROUP_ID = BG.BUSINESS_GROUP_ID&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.STATUS As ST&#xA;On C.CASE_STATUS_ID = ST.STATUS_ID&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.CASE_DETAILS_USSAR_EX_VW As CD&#xA;On C.CASE_KEY = CD.CASE_KEY&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.SUB_STATUS As SS&#xA;On CD.SUB_STATUS_ID = SS.SUB_STATUS_ID&#xA;&#xA; &#xA;&#xA;LEFT Join IWATCH_PROD.CPCE.CASE_INTERVIEW_USSAR_EX_VW As CI&#xA;On C.CASE_KEY = CI.CASE_KEY&#xA;&#xA; &#xA;&#xA;LEFT Join IWATCH_PROD.CPCE.CASE_INTERVIEW_ANSWER_USSAR_EX_VW As CIA&#xA;On CI.CASE_INTERVIEW_ID=CIA.CASE_INTERVIEW_ID&#xA;&#xA; &#xA;&#xA;LEFT Join SUB_QUESTION As QID&#xA;On CIA.QUESTION_ID=QID.QUESTION_ID&#xA;&#xA; &#xA;&#xA;LEFT Join IWATCH_PROD.CPCE.USER As U&#xA;On CIA.CREATE_USER_ID = U.USER_ID&#xA;&#xA; &#xA;&#xA;UNION&#xA;&#xA; &#xA;&#xA;Select&#xA;C.CASE_ID&#xA;,BG.BUSINESS_GROUP_NAME&#xA;,IG.INV_GRP_NAME&#xA;,ST.STATUS_DESCRIPTION&#xA;,SS.SUB_STATUS_DESCRIPTION&#xA;,C.CREATE_TIMESTAMP&#xA;,CC.COMMENT&#xA;,CC.CREATE_TIMESTAMP As &quot;&quot;COMMENT CREATION&quot;&quot;&#xA;,U.FIRST_NAME || ' ' || U.LAST_NAME AS &quot;&quot;COMMENT BY USER&quot;&quot;&#xA;&#xA; &#xA;&#xA;From&#xA;SUB_SUBJECT As S&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.CASE_SUBJECT_USSAR_EX_VW As CS&#xA;On CS.SUBJECT_KEY = S.SUBJECT_KEY&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.CASE_USSAR_EX_VW As C&#xA;On C.CASE_KEY = CS.CASE_KEY&#xA;&#xA; &#xA;&#xA;INNER Join SUB_INVESTIGATIVE_GROUP As IG&#xA;On C.INV_GRP_ID = IG.INV_GRP_ID&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.BUSINESS_GROUP As BG&#xA;On C.BUSINESS_GROUP_ID = BG.BUSINESS_GROUP_ID&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.STATUS As ST&#xA;On C.CASE_STATUS_ID = ST.STATUS_ID&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.CASE_DETAILS_USSAR_EX_VW As CD&#xA;On C.CASE_KEY = CD.CASE_KEY&#xA;&#xA; &#xA;&#xA;INNER Join IWATCH_PROD.CPCE.SUB_STATUS As SS&#xA;On CD.SUB_STATUS_ID = SS.SUB_STATUS_ID&#xA;&#xA; &#xA;&#xA;LEFT Join SUB_CASE_COMMENT As CC&#xA;On C.CASE_KEY = CC.CASE_KEY&#xA;&#xA; &#xA;&#xA;LEFT Join IWATCH_PROD.CPCE.USER As U&#xA;On CC.CREATE_USER_ID = U.USER_ID;&quot;]" SnowflakeRole="[Role]" SnowflakeSchema="[Schema]" SnowflakeServer="[Server]" SnowflakeTable="[out_TableEcdd]" SnowflakeUsername="[Username]" SnowflakeWarehouse="[Warehouse]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </s:Snowflake_Authenticate_And_RunQuery>
+          <If Condition="[out_TableEcdd Is Nothing OrElse out_TableEcdd.Rows.Count &gt; 0]" DisplayName="If-  ECDD table is not empty" sap:VirtualizedContainerService.HintSize="744,2661" sap2010:WorkflowViewState.IdRef="If_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="710,2479" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="COMMENT_EXIST" DataTable="[out_TableEcdd]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="668,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:AddDataColumn>
+                <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="COMMENT DATE" DataTable="[out_TableEcdd]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="668,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:AddDataColumn>
+                <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="CREATED DATE" DataTable="[out_TableEcdd]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="668,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:AddDataColumn>
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_TableEcdd]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="668,1347" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                      </ActivityAction.Argument>
+                      <Sequence sap:VirtualizedContainerService.HintSize="634,1232" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="572,633" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[CurrentRow(&quot;COMMENT&quot;).ToString.Length &gt; 0 AND CurrentRow(&quot;COMMENT&quot;).ToString &lt;&gt; &quot;&quot;]" DisplayName="If - Comment Exist" sap:VirtualizedContainerService.HintSize="510,522" sap2010:WorkflowViewState.IdRef="If_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[CurrentRow("COMMENT_EXIST")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">["Notes"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Object">[CurrentRow("COMMENT_EXIST")]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Object">["Not available"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Assign sap:VirtualizedContainerService.HintSize="572,82" sap2010:WorkflowViewState.IdRef="Assign_25">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[CaseID]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[CurrentRow("CASE_ID").ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="572,82" sap2010:WorkflowViewState.IdRef="Assign_26">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[out_CaseIds]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[out_CaseIds + " ; " + CaseID]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="572,82" sap2010:WorkflowViewState.IdRef="Assign_35">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[CurrentRow("COMMENT DATE")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[split(CurrentRow("COMMENT CREATION").tostring," ")(0)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="572,82" sap2010:WorkflowViewState.IdRef="Assign_36">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[CurrentRow("CREATED DATE")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[split(CurrentRow("CREATE_TIMESTAMP").tostring," ")(0)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                </ui:ForEachRow>
+                <Assign sap:VirtualizedContainerService.HintSize="668,82" sap2010:WorkflowViewState.IdRef="Assign_30">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_CaseIds]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[out_CaseIds.TrimStart(" "c).TrimStart(";"c).TrimStart(" "c)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="668,82" sap2010:WorkflowViewState.IdRef="Assign_28">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_CaseIds]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[String.Join(" ",out_CaseIds.Split(" "c).ToList().Distinct)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="668,82" sap2010:WorkflowViewState.IdRef="Assign_34">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">[out_TableEcddFiltered]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable">[out_TableEcdd.AsEnumerable().GroupBy(Function(r) r.Field(of String)("CASE_ID")).Select(Function(s) s.First()).CopyToDataTable]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_41">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_NoResultsEcdd]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">No results were found</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s1:Exception" sap:VirtualizedContainerService.HintSize="810,443" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s1:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s1:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Error Case" sap:VirtualizedContainerService.HintSize="496,374" sap2010:WorkflowViewState.IdRef="Sequence_26">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log - Snowflake Error" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Fatal]" Message="[&quot;Snowflake: Error Message: &quot;+exception.Message]" />
+              <Assign DisplayName="Assign - Error Message" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_19">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Snowflake Work failed. Error Message: "+exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
